@@ -1,4 +1,5 @@
 const models = require('../models')
+const dataProjet = require('../dataProjet')
 
 
 module.exports = app => {
@@ -7,7 +8,7 @@ module.exports = app => {
    
         models
             .Projet
-            .create(req.body)
+            .bulkCreate(dataProjet)
             .then(resultat => res.json(resultat))
 })
     app.get('/projet',(req,res) => {
@@ -15,6 +16,18 @@ module.exports = app => {
         models
             .Projet
             .findAll()
+            .then(resultat => res.json(resultat))
+    })
+
+    app.put('/projet',(req,res) => {
+
+        models
+            .Projet
+            .update(req.body,{
+                where : {
+                    id : 3
+                }
+            })
             .then(resultat => res.json(resultat))
     })
 

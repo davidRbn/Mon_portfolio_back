@@ -1,5 +1,5 @@
 const models = require('../models')
-
+const dataCompetence = require('../dataCompetence')
 
 module.exports = app =>  {
 
@@ -7,7 +7,7 @@ module.exports = app =>  {
    
         models
             .Competence
-            .create(req.body)
+            .bulkCreate(dataCompetence)
             .then(resultat => res.json(resultat))
 })
     app.get('/competence',(req,res) => {
